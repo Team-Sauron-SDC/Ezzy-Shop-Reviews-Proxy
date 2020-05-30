@@ -1,0 +1,31 @@
+config:
+  processor: "./simFunctions.js"
+  target: "http://localhost:5500"
+  pool: 100
+  phases:
+    - duration: 60
+      arrivalRate: 1
+      rampTo: 5
+      maxVusers: 20
+    - duration: 120
+      arrivalRate: 5
+      maxVusers: 30
+    - duration: 120
+      arrivalRate: 5
+      maxVusers: 50
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 10
+      maxVusers: 100
+scenarios:
+  - name: "Get page"
+    weight: 70
+    flow:
+      -
+        count: 30
+        loop:
+          -
+            function: "page"
+          -
+            get:
+              url: '/{{id}}/'
