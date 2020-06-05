@@ -3,6 +3,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
+const dotenv = require('dotenv').config();
+
 
 const app = express();
 const PORT = process.env.PORT || 80;
