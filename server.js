@@ -12,14 +12,15 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/:id', express.static(path.join(__dirname, 'public')));
 
-// app.use('/product/:id', createProxyMiddleware({target: 'http://3.21.234.192:4200', changeOrigin: true}))
-// app.use('/product/shop/:shopId', createProxyMiddleware({target: 'http://3.21.234.192:4200', changeOrigin: true}))
-// app.use('/product/colors/:id', createProxyMiddleware({target: 'http://3.21.234.192:4200', changeOrigin: true}))
-app.use('/api/reviews/:id', createProxyMiddleware({target: 'http://ec2-54-219-183-228.us-west-1.compute.amazonaws.com', changeOrigin: true}))
-// app.use('/api/carousel/:id', createProxyMiddleware({target: 'http://ec2-54-193-220-25.us-west-1.compute.amazonaws.com:9000', changeOrigin: true}))
-// app.use('/api/carouselEnlarged/:id', createProxyMiddleware({target: 'http://ec2-54-193-220-25.us-west-1.compute.amazonaws.com:9000', changeOrigin: true}))
-// app.use('/products/:id', createProxyMiddleware({target: 'http://ec2-3-22-170-203.us-east-2.compute.amazonaws.com:4000', changeOrigin: true}))
-// app.use('/get/random', createProxyMiddleware({target: 'http://ec2-3-22-170-203.us-east-2.compute.amazonaws.com:4000', changeOrigin: true}))
+app.use('/product/:id', createProxyMiddleware({ target: process.env.INFO_URL, changeOrigin: true }));
+app.use('/product/shop/:shopId', createProxyMiddleware({ target:  process.env.INFO_URL, changeOrigin: true }));
+app.use('/product/colors/:id', createProxyMiddleware({ target:  process.env.INFO_URL, changeOrigin: true }));
+app.use('/api/reviews/:id', createProxyMiddleware({target: process.env.REVIEWS_URL, changeOrigin: true}))
+app.use('/api/carousel/:id', createProxyMiddleware({target: process.env.CAROUSEL_URL, changeOrigin: true }));
+app.use('/api/carouselEnlarged/:id', createProxyMiddleware({ target: process.env.CAROUSEL_URL, changeOrigin: true }));
+app.use('/products/:id', createProxyMiddleware({ target: process.env.SUGGESTED_URL, changeOrigin: true }));
+app.use('/get/random', createProxyMiddleware({ target: process.env.SUGGESTED_URL, changeOrigin: true }));
+
 
 app.listen(PORT, (err) => {
   if (err) {
