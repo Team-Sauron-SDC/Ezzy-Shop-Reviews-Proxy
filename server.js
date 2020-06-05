@@ -6,7 +6,7 @@ const compression = require('compression');
 
 const app = express();
 const PORT = process.env.PORT || 80;
-const HOST = process.env.HOST || 'localhost';
+// const HOST = process.env.HOST || 'localhost';
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -21,11 +21,11 @@ app.use('/api/reviews/:id', createProxyMiddleware({target: 'http://ec2-54-219-18
 // app.use('/products/:id', createProxyMiddleware({target: 'http://ec2-3-22-170-203.us-east-2.compute.amazonaws.com:4000', changeOrigin: true}))
 // app.use('/get/random', createProxyMiddleware({target: 'http://ec2-3-22-170-203.us-east-2.compute.amazonaws.com:4000', changeOrigin: true}))
 
-app.listen(PORT, HOST, (err) => {
+app.listen(PORT, (err) => {
   if (err) {
     console.error('Error starting  server', err);
   } else {
-    console.log('server listening at http://' + HOST + ":" + PORT);
+    console.log('server listening);
   }
 });
 
